@@ -1,6 +1,10 @@
 # Rewrite LLM Rules for Claude Desktop
 
-Quantumult X rewrite script for Claude Desktop, enabling it to work with Chinese LLM API providers that support the Anthropic API format.
+## Background
+
+Claude Desktop App recently added support for custom models. However, after a subsequent update, it started rejecting custom model names that don't appear to be from Anthropic. For example, using `deepseek-v4-pro` directly will be blocked with a "not an Anthropic model" error. But if you prefix it with `claude-`, such as `claude-deepseek-v4-pro`, it works.
+
+This project provides a simple Quantumult X rewrite rule to solve this problem: configure Claude Desktop with the `claude-` prefixed model name, then use the rewrite rule to intercept the request and strip the prefix before forwarding it to the actual API provider.
 
 ## Supported Providers
 
@@ -23,7 +27,7 @@ Quantumult X rewrite script for Claude Desktop, enabling it to work with Chinese
 
 The script intercepts API requests from Claude Desktop and rewrites the `model` field in the request body, removing the `claude-` prefix so the target API provider can process the model name correctly.
 
-For example: `claude-sonnet-4-20250514` becomes `sonnet-4-20250514`.
+For example: `claude-deepseek-v4-pro` becomes `deepseek-v4-pro`.
 
 ## Usage
 
