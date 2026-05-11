@@ -25,8 +25,20 @@ Claude Desktop 会拒绝不符合 Anthropic 命名规范的自定义模型。直
 
 脚本读取请求体，把 `model` 字段里的 `claude-` 前缀删掉，然后转发修正后的名称。`claude-deepseek-v4-pro` 变成 `deepseek-v4-pro`。
 
-## 使用方法
+## Quantumult X 配置
 
-1. 把 `QuanX/claude-desktop-model-rewrite.snippet` 导入 Quantumult X 的 [rewrite] 区
-2. 把 `QuanX/rewrite-model.js` 放到 Quantumult X 脚本目录
-3. 让 Claude Desktop 的流量走代理
+### 1. 开启 MitM
+
+进入 Quantumult X 的 **设置 > MitM**，打开 MitM 并安装/信任证书。重写规则需要 MitM 才能拦截 HTTPS 请求体。
+
+### 2. 添加 Rewrite Remote
+
+在 Quantumult X 配置文件的 `[rewrite_remote]` 下面加一行：
+
+```
+https://raw.githubusercontent.com/lihuu/rewrite-llm-rules-for-claude-desktop/main/QuanX/claude-desktop-model-rewrite.snippet, tag=rules-for-claude-desktop, enabled=true
+```
+
+### 3. 让 Claude Desktop 走代理
+
+确保 Claude Desktop 的 API 请求经过 Quantumult X 代理。重写规则会自动匹配支持的提供商，并去掉模型名称里的 `claude-` 前缀。

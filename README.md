@@ -27,8 +27,20 @@ This project is a Quantumult X rewrite rule that strips that prefix before the r
 
 The script reads the request body, removes the `claude-` prefix from the `model` field, and forwards the corrected name. `claude-deepseek-v4-pro` becomes `deepseek-v4-pro`.
 
-## Usage
+## Quantumult X Configuration
 
-1. Import `QuanX/claude-desktop-model-rewrite.snippet` into Quantumult X's [rewrite] section
-2. Place `QuanX/rewrite-model.js` in your Quantumult X script directory
-3. Route Claude Desktop traffic through the proxy
+### 1. Enable MitM
+
+In Quantumult X, go to **Settings > MitM**, turn on MitM and install/信任 the certificate. The rewrite rules need MitM to intercept HTTPS request bodies.
+
+### 2. Add Rewrite Remote
+
+In your Quantumult X configuration file, add under `[rewrite_remote]`:
+
+```
+https://raw.githubusercontent.com/lihuu/rewrite-llm-rules-for-claude-desktop/main/QuanX/claude-desktop-model-rewrite.snippet, tag=rules-for-claude-desktop, enabled=true
+```
+
+### 3. Route Claude Desktop Traffic
+
+Make sure Claude Desktop's API requests go through the Quantumult X proxy. The rewrite rule will automatically match requests to the supported providers and strip the `claude-` prefix from the model name.
