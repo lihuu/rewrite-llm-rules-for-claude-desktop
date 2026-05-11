@@ -1,10 +1,10 @@
 # Rewrite LLM Rules for Claude Desktop
 
-## Background
+[中文版](README_CN.md)
 
-Claude Desktop App recently added support for custom models. However, after a subsequent update, it started rejecting custom model names that don't appear to be from Anthropic. For example, using `deepseek-v4-pro` directly will be blocked with a "not an Anthropic model" error. But if you prefix it with `claude-`, such as `claude-deepseek-v4-pro`, it works.
+Claude Desktop blocks custom model names unless they look like Anthropic models. Try `deepseek-v4-pro` and you get "not an Anthropic model." Prefix it with `claude-` and it works.
 
-This project provides a simple Quantumult X rewrite rule to solve this problem: configure Claude Desktop with the `claude-` prefixed model name, then use the rewrite rule to intercept the request and strip the prefix before forwarding it to the actual API provider.
+This project is a Quantumult X rewrite rule that strips that prefix before the request reaches the API provider.
 
 ## Supported Providers
 
@@ -25,12 +25,10 @@ This project provides a simple Quantumult X rewrite rule to solve this problem: 
 
 ## How It Works
 
-The script intercepts API requests from Claude Desktop and rewrites the `model` field in the request body, removing the `claude-` prefix so the target API provider can process the model name correctly.
-
-For example: `claude-deepseek-v4-pro` becomes `deepseek-v4-pro`.
+The script reads the request body, removes the `claude-` prefix from the `model` field, and forwards the corrected name. `claude-deepseek-v4-pro` becomes `deepseek-v4-pro`.
 
 ## Usage
 
 1. Import `QuanX/claude-desktop-model-rewrite.snippet` into Quantumult X's [rewrite] section
 2. Place `QuanX/rewrite-model.js` in your Quantumult X script directory
-3. Configure Claude Desktop to route requests through the proxy
+3. Route Claude Desktop traffic through the proxy
