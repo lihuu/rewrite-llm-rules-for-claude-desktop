@@ -28,5 +28,5 @@ For example: `claude-sonnet-4-20250514` becomes `sonnet-4-20250514`.
 ## Usage
 
 1. Import `QuanX/claude-desktop-model-rewrite.snippet` into Quantumult X's [rewrite] section
-2. Place `QuanX/rewrite-model-remove-prefix.js` in your Quantumult X script directory
+2. Place `QuanX/rewrite-model.js` in your Quantumult X script directory
 3. Configure Claude Desktop to route requests through the proxy

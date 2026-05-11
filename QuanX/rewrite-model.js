@@ -2,7 +2,7 @@
  * @fileoverview Remove "my-" prefix from model field in request body.
  *
  * @script-type script-request-body
- * @example ^https://api\.example\.com/v1/chat url script-request-body rewrite-model-remove-prefix.js
+ * @example ^https://api\.example\.com/v1/chat url script-request-body rewrite-model.js
  */
 
 var body = $request.body;
