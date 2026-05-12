@@ -2,7 +2,7 @@
 
 Claude Desktop 会拒绝不符合 Anthropic 命名规范的自定义模型。直接填 `deepseek-v4-pro` 会报 "not an Anthropic model"，但加上 `claude-` 前缀就能用。
 
-这个项目是一条 Quantumult X 重写规则，在请求到达 API 提供商之前，把那个前缀去掉。
+这个项目为 Quantumult X 和 Shadowrocket 提供重写规则，在请求到达 API 提供商之前，把那个前缀去掉。
 
 ## 支持的 API 提供商
 
@@ -42,3 +42,21 @@ https://raw.githubusercontent.com/lihuu/rewrite-llm-rules-for-claude-desktop/mai
 ### 3. 让 Claude Desktop 走代理
 
 确保 Claude Desktop 的 API 请求经过 Quantumult X 代理。重写规则会自动匹配支持的提供商，并去掉模型名称里的 `claude-` 前缀。
+
+## Shadowrocket 配置
+
+### 1. 开启 MitM
+
+进入 Shadowrocket 的 **设置 > MitM**，打开 MitM 并安装/信任证书。重写规则需要 MitM 才能拦截 HTTPS 请求体。
+
+### 2. 添加模块
+
+在 Shadowrocket 的 **设置 > 模块** 中，添加以下 URL：
+
+```
+https://raw.githubusercontent.com/lihuu/rewrite-llm-rules-for-claude-desktop/main/Shadowrocket/claude-desktop-model-rewrite.sgmodule
+```
+
+### 3. 让 Claude Desktop 走代理
+
+确保 Claude Desktop 的 API 请求经过 Shadowrocket 代理。重写规则会自动匹配支持的提供商，并去掉模型名称里的 `claude-` 前缀。

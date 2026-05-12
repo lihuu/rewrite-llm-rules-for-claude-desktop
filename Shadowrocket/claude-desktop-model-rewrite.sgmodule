@@ -1,0 +1,8 @@
+# Claude Desktop Model Rewrite for Shadowrocket
+# 在请求到达 API 提供商之前，去掉模型名称里的 claude- 前缀
+
+[Script]
+claude-desktop-model-rewrite = type=http-request, pattern=^https://(api\.deepseek\.com|token-plan-cn\.xiaomimimo\.com|coding\.dashscope\.aliyuncs\.com|ark\.cn-beijing\.volces\.com|api\.moonshot\.cn|open\.bigmodel\.cn|api\.z\.ai|api\.minimax\.io|token-plan\.cn-beijing\.maas\.aliyuncs\.com|api\.lkeap\.cloud\.tencent\.com|tokenhub\.tencentmaas\.com|qianfan\.baidubce\.com)/(.*\/)?anthropic, requires-body=1, max-size=-1, script-path=https://raw.githubusercontent.com/lihuu/rewrite-llm-rules-for-claude-desktop/main/Shadowrocket/rewrite-model.js
+
+[MITM]
+hostname = api.deepseek.com, token-plan-cn.xiaomimimo.com, coding.dashscope.aliyuncs.com, ark.cn-beijing.volces.com, api.moonshot.cn, open.bigmodel.cn, api.z.ai, api.minimax.io, token-plan.cn-beijing.maas.aliyuncs.com, api.lkeap.cloud.tencent.com, tokenhub.tencentmaas.com, qianfan.baidubce.com

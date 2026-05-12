@@ -4,7 +4,7 @@
 
 Claude Desktop blocks custom model names unless they look like Anthropic models. Try `deepseek-v4-pro` and you get "not an Anthropic model." Prefix it with `claude-` and it works.
 
-This project is a Quantumult X rewrite rule that strips that prefix before the request reaches the API provider.
+This project provides rewrite rules for Quantumult X and Shadowrocket that strip that prefix before the request reaches the API provider.
 
 ## Supported Providers
 
@@ -31,7 +31,7 @@ The script reads the request body, removes the `claude-` prefix from the `model`
 
 ### 1. Enable MitM
 
-In Quantumult X, go to **Settings > MitM**, turn on MitM and install/信任 the certificate. The rewrite rules need MitM to intercept HTTPS request bodies.
+In Quantumult X, go to **Settings > MitM**, turn on MitM and install/trust the certificate. The rewrite rules need MitM to intercept HTTPS request bodies.
 
 ### 2. Add Rewrite Remote
 
@@ -44,3 +44,21 @@ https://raw.githubusercontent.com/lihuu/rewrite-llm-rules-for-claude-desktop/mai
 ### 3. Route Claude Desktop Traffic
 
 Make sure Claude Desktop's API requests go through the Quantumult X proxy. The rewrite rule will automatically match requests to the supported providers and strip the `claude-` prefix from the model name.
+
+## Shadowrocket Configuration
+
+### 1. Enable MitM
+
+In Shadowrocket, go to **Settings > MitM**, enable MitM and install/trust the certificate. The rewrite rules need MitM to intercept HTTPS request bodies.
+
+### 2. Add Module
+
+In Shadowrocket, go to **Settings > Module**, and add the following URL:
+
+```
+https://raw.githubusercontent.com/lihuu/rewrite-llm-rules-for-claude-desktop/main/Shadowrocket/claude-desktop-model-rewrite.sgmodule
+```
+
+### 3. Route Claude Desktop Traffic
+
+Make sure Claude Desktop's API requests go through the Shadowrocket proxy. The rewrite rule will automatically match requests to the supported providers and strip the `claude-` prefix from the model name.
