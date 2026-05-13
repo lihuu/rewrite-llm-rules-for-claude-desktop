@@ -25,7 +25,23 @@ This project provides rewrite rules for Quantumult X and Shadowrocket that strip
 
 ## How It Works
 
-The script reads the request body, removes the `claude-` prefix from the `model` field, and forwards the corrected name. `claude-deepseek-v4-pro` becomes `deepseek-v4-pro`.
+The script reads the request body and rewrites the `model` field before forwarding the request.
+
+### Explicit Mappings
+
+| Claude Desktop Model | Forwarded As |
+|----------------------|-------------|
+| `claude-deep-seek-v4-lite` | `deepseek-v4-lite` |
+| `claude-deep-seek-v4-pro` | `deepseek-v4-pro` |
+| `claude-deep-seek-v4-flash` | `deepseek-v4-flash` |
+| `claude-mi-mo-v2.5-pro` | `mimo-v2.5-pro` |
+| `claude-mi-mo-v2.5` | `mimo-v2.5` |
+| `claude-q-wen-3.6-plus` | `qwen-3.6-plus` |
+| `claude-ki-mi-2.6` | `kimi-k2.6` |
+
+### Fallback
+
+If a model is not in the explicit mapping, the script strips the `claude-` prefix and removes the first hyphen. For example, `claude-x-abcd-xxx` becomes `xabcd-xxx`.
 
 ## Quantumult X Configuration
 

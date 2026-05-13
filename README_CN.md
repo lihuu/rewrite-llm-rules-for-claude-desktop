@@ -23,7 +23,23 @@ Claude Desktop 会拒绝不符合 Anthropic 命名规范的自定义模型。直
 
 ## 工作原理
 
-脚本读取请求体，把 `model` 字段里的 `claude-` 前缀删掉，然后转发修正后的名称。`claude-deepseek-v4-pro` 变成 `deepseek-v4-pro`。
+脚本读取请求体，对 `model` 字段进行改写后转发请求。
+
+### 显式映射
+
+| Claude Desktop 模型名 | 转发为 |
+|----------------------|--------|
+| `claude-deep-seek-v4-lite` | `deepseek-v4-lite` |
+| `claude-deep-seek-v4-pro` | `deepseek-v4-pro` |
+| `claude-deep-seek-v4-flash` | `deepseek-v4-flash` |
+| `claude-mi-mo-v2.5-pro` | `mimo-v2.5-pro` |
+| `claude-mi-mo-v2.5` | `mimo-v2.5` |
+| `claude-q-wen-3.6-plus` | `qwen-3.6-plus` |
+| `claude-ki-mi-2.6` | `kimi-k2.6` |
+
+### 兜底逻辑
+
+如果模型名不在显式映射中，脚本会去掉 `claude-` 前缀并删除第一个 `-`。例如 `claude-x-abcd-xxx` 会变成 `xabcd-xxx`。
 
 ## Quantumult X 配置
 
