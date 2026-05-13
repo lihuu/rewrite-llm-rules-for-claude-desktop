@@ -9,7 +9,7 @@ if (obj.model && obj.model.startsWith("claude-")) {
     "claude-mi-mo-v2.5-pro": "mimo-v2.5-pro",
     "claude-mi-mo-v2.5": "mimo-v2.5",
     "claude-q-wen-3.6-plus": "qwen-3.6-plus",
-    "claude-ki-mi-2.6": "kimi2.6"
+    "claude-ki-mi-2.6": "kimi-k2.6"
   };
   obj.model = modelMap[obj.model] || obj.model.substring(7);
 }
