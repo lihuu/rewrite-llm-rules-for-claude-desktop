@@ -31,7 +31,6 @@ The script reads the request body and rewrites the `model` field before forwardi
 
 | Claude Desktop Model | Forwarded As |
 |----------------------|-------------|
-| `claude-deep-seek-v4-lite` | `deepseek-v4-lite` |
 | `claude-deep-seek-v4-pro` | `deepseek-v4-pro` |
 | `claude-deep-seek-v4-flash` | `deepseek-v4-flash` |
 | `claude-mi-mo-v2.5-pro` | `mimo-v2.5-pro` |

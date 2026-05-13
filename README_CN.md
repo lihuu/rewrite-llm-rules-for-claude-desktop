@@ -29,7 +29,6 @@ Claude Desktop 会拒绝不符合 Anthropic 命名规范的自定义模型。直
 
 | Claude Desktop 模型名 | 转发为 |
 |----------------------|--------|
-| `claude-deep-seek-v4-lite` | `deepseek-v4-lite` |
 | `claude-deep-seek-v4-pro` | `deepseek-v4-pro` |
 | `claude-deep-seek-v4-flash` | `deepseek-v4-flash` |
 | `claude-mi-mo-v2.5-pro` | `mimo-v2.5-pro` |
