@@ -11,7 +11,8 @@ if (obj.model && obj.model.startsWith("claude-")) {
     "claude-q-wen-3.6-plus": "qwen-3.6-plus",
     "claude-ki-mi-2.6": "kimi-k2.6"
   };
-  obj.model = modelMap[obj.model] || obj.model.substring(7);
+  var stripped = obj.model.substring(7);
+  obj.model = modelMap[obj.model] || stripped.replace("-", "");
 }
 
 $done({ body: JSON.stringify(obj) });
