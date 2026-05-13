@@ -2,7 +2,11 @@ var body = $request.body;
 var obj = JSON.parse(body);
 
 if (obj.model && obj.model.startsWith("claude-")) {
-  obj.model = obj.model.substring(7);
+  var modelMap = {
+    "claude-deep-seek-v4-lite": "deepseek-v4-lite",
+    "claude-deep-seek-v4-pro": "deepseek-v4-pro"
+  };
+  obj.model = modelMap[obj.model] || obj.model.substring(7);
 }
 
 $done({ body: JSON.stringify(obj) });
